@@ -165,14 +165,17 @@ Keep the existing reservation flow and Premium Green design unchanged.
 
 ![ผลลัพธ์หลังปรับปรุงเว็บ](img/3.5.png)
 
-### ขั้นตอนที่ 4: คัดลอก App URL
+### ขั้นตอนที่ 4: คัดลอก App URL ของ Web App
 
-ก่อนแปลงเป็น LINE MINI App คุณต้องมี **App URL** ของเว็บที่ Deploy แล้วจาก Google AI Studio — นำไปใช้เป็น **Endpoint URL** ใน LINE Developers Console ในขั้นตอนถัดไป
+ก่อนแปลงเป็น LINE MINI App คุณต้องมี **App URL** ของ Web App จาก Google AI Studio — นำไปใช้เป็น **Endpoint URL** ใน LINE Developers Console ในขั้นตอนถัดไป
 
-1. กด **Publish** เพื่อ Deploy แอป
-2. เปิด **Settings** (ไอคอนเฟือง) → แท็บ **Integrations**
-3. เลือก **Enable OAuth manually** (Self-serve authentication)
-4. คัดลอก **App URL** ไว้ใช้ในขั้นตอนถัดไป
+1. เปิด **Settings** (ไอคอนเฟือง) → แท็บ **Integrations**
+2. เลือก **Enable OAuth manually** (Self-serve authentication)
+3. คัดลอก **App URL** ไว้ใช้ในขั้นตอนถัดไป
+
+<aside class="negative">
+<strong>Important:</strong> <strong>App URL</strong> จาก Google AI Studio เป็น URL <strong>ชั่วคราว</strong> ไม่ได้อยู่ถาวร — ถ้าเข้า workspace ไม่ได้หรือ session หมดอายุ Web App จะเปิดไม่ได้ ต้องกลับมาเปิด workspace ใหม่และอัปเดต <strong>Endpoint URL</strong> หาก URL เปลี่ยน
+</aside>
 
 ![Settings → Integrations → Enable OAuth manually](img/3.6.png)
 
@@ -184,15 +187,13 @@ Keep the existing reservation flow and Premium Green design unchanged.
 
 ### ทดสอบเว็บก่อนไปต่อ
 
-เปิด **App URL** ในเบราว์เซอร์เพื่อทดสอบเว็บที่ Deploy แล้ว
+เปิด **App URL** ในเบราว์เซอร์เพื่อทดสอบ Web App
 
 ![ทดสอบเว็บผ่าน App URL](img/3.8.png)
 
 - เลือกจำนวนแขก (+ / −) ได้
 - เลือกวันที่และช่วงเวลา (Lunch / Dinner) ได้
 - กรอกชื่อ เบอร์โทร และ Special Request ได้
-
-
 
 
 ## สร้าง Provider และ Channel
@@ -258,18 +259,45 @@ Duration: 0:20:00
 ## แปลงเว็บเป็น LINE MINI App
 Duration: 0:45:00
 
-ในช่วงนี้คุณจะใช้ **Google AI Studio** เพื่อ **แปลงเว็บที่มีอยู่แล้ว** ให้ทำงานเป็น **LINE MINI App** ผ่าน LIFF — ทุกขั้นตอนทำด้วย Prompt
+ในช่วงนี้คุณจะใช้ **Google AI Studio** เพื่อ **แปลงเว็บที่มีอยู่แล้ว** ให้ทำงานเป็น **LINE MINI App** ผ่าน LIFF — เริ่มจากตั้งค่าใน LINE Developers Console ก่อน แล้วจึงส่ง Prompt
 
 <aside class="positive">
-<strong>Note:</strong> ใช้ Channel <strong>Restaurant Reservation</strong> ที่สร้างไว้ในขั้นตอน <strong>สร้าง Provider และ Channel</strong> — ตรวจสอบว่ามี Channel ID และ LIFF ID จากแท็บ <strong>Web app settings</strong> แล้ว
+<strong>Note:</strong> ใช้ Channel <strong>Restaurant Reservation</strong> ที่สร้างไว้ในขั้นตอน <strong>สร้าง Provider และ Channel</strong> และเตรียม <strong>App URL</strong> ของ Web App จาก Google AI Studio ไว้แล้ว
 </aside>
 
-### ขั้นตอนที่ 1: Prompt เพื่อแปลงเป็น LINE MINI App และสร้าง LINE User Profile Card
+### ขั้นตอนที่ 1: ค้นหา LIFF ID
 
-ไปยัง LINE Developer Console เพื่อ หา LIFF_ID
+1. ไปที่ [LINE Developers Console](https://developers.line.biz/console/)
+2. เลือก Channel **Restaurant Reservation**
+3. เปิดแท็บ **Web app settings**
+4. คัดลอก **LIFF ID** จาก **LIFF URL** แบบ **Developing** — ส่วนที่ตามหลัง `https://miniapp.line.me/` เช่น `2010347080-K2dCFtFf`
 
+```
+https://miniapp.line.me/xxxxxxxxxx-xxxxxxxx
+```
 
-หลัง AI สร้างแอปแล้ว ให้ Prompt สร้าง **User Profile Card** ที่ดึงข้อมูลจาก LINE (แทนที่ `YOUR_LIFF_ID` ด้วย LIFF ID จาก Console):
+![ค้นหา LIFF ID จาก LIFF URL](img/5.1.png)
+
+<aside class="positive">
+<strong>Tip:</strong> เก็บ <strong>LIFF ID</strong> ไว้ใช้ใน Prompt ขั้นตอนที่ 3
+</aside>
+
+### ขั้นตอนที่ 2: อัปเดต Endpoint URL
+
+**Endpoint URL** คือ URL ที่รองรับ **HTTPS** ซึ่ง LINE จะใช้โหลด Web App ของคุณเมื่อผู้ใช้เปิด MINI App
+
+1. ในแท็บ **Web app settings** → หา **Endpoint URL**
+2. วาง **App URL** จาก Google AI Studio (ขั้นตอนที่ 4) ลงในช่อง **Developing** (ต้องขึ้นต้นด้วย `https://`)
+3. คลิก **Update** เพื่อบันทึก
+
+![อัปเดต Endpoint URL](img/5.2.png)
+
+### ขั้นตอนที่ 3: ส่ง Prompt แปลงเป็น LINE MINI App
+
+![วาง Prompt แปลงเป็น LINE MINI App](img/5.3.png)
+
+วาง Prompt ด้านล่างใน Google AI Studio แทนที่ `YOUR_LIFF_ID` ด้วย LIFF ID จากขั้นตอนที่ 1 แล้วกดส่ง Prompt:
+
 
 ```
 ADD ENV FILE: 
@@ -284,63 +312,39 @@ Requirements:
 - Display the user's LINE profile picture and display name after successful login.
 - Automatically populate the Customer Name field with the LINE display name.
 - Keep the Customer Name field editable by the user.
-- Do not force automatic login when the page loads.
-- Show a LINE Login button when the user is not logged in.
+- IMPORTANT: Do not force automatic login when the page loads. Do not call liff.login() on init or page load.
+- Show a LINE Login button when the user is not logged in. Call liff.login() only when the user clicks the Login button.
 - When the Login button is clicked:
-- If liff.isLoggedIn() is false, call liff.login().
-- If already logged in, load the user's profile using liff.getProfile().
+  - If liff.isLoggedIn() is false, call liff.login().
+  - If already logged in, load the user's profile using liff.getProfile().
 - Show a Logout button when the user is logged in.
-- When Logout is clicked: Call liff.logout()
-
+- When Logout is clicked: call liff.logout().
 
 LIFF Setup:
-- Initialize LIFF using withLoginOnExternalBrowser: true.
+- Initialize LIFF with liff.init({ liffId }) and withLoginOnExternalBrowser: true only.
+- Never auto-trigger liff.login() during initialization or on first render.
 - Support both LINE in-app browser and external browsers (Chrome, Safari, desktop browsers).
 - Use liff.isInClient() to detect whether the app is running inside LINE.
 - Use liff.getContext() to retrieve environment information for debugging and application behavior.
 ```
 
-แทนที่ `YOUR_LIFF_ID` ด้วย LIFF ID จาก Console แล้วกดส่ง Prompt
 
-![วาง Prompt แปลงเป็น LINE MINI App](img/5.3.png)
+### ขั้นตอนที่ 4: ทดสอบ LINE MINI App
 
-### ขั้นตอนที่ 2: ตั้งค่า LINE MINI App
-
-หลังจากที่คุณมี **Provider** และ **LINE MINI App channel** เรียบร้อยแล้ว ขั้นตอนต่อไปเราจะมาตั้งค่าเพื่อใช้งาน LINE MINI App กัน
-
-1. ไปที่ [LINE Developers Console](https://developers.line.biz/console/)
-2. เลือก Channel **Restaurant Reservation**
-3. เปิดแท็บ **Web app settings**
-
-#### ผูก Endpoint URL เข้ากับ LINE MINI App
-
-**Endpoint URL** คือ URL ที่รองรับ **HTTPS** ซึ่ง LINE จะใช้โหลดเว็บแอปของคุณเมื่อผู้ใช้เปิด MINI App
-
-ใน Codelab นี้ ให้คุณระบุ **Endpoint URL ของเว็บที่ Deploy แล้วจาก Google AI Studio** ลงในช่อง **Developing**:
-
-1. แท็บ **Web app settings** → หา **Endpoint URL**
-2. วาง **App URL** จาก Google AI Studio (ขั้นตอนที่ 4) ลงในช่อง **Developing** (ต้องขึ้นต้นด้วย `https://`)
-3. คลิก **Update** เพื่อบันทึก
-
-![ตั้งค่า Endpoint URL](img/5.2.png)
-
-#### LIFF URL สำหรับเปิด LINE MINI App
-
-URL ของ LINE MINI App ที่เราจะนำไปใช้ทดสอบจะอยู่ที่ **LIFF URL** แบบ **Developing** ในหน้า **Web app settings** เช่น:
-
-```
-https://miniapp.line.me/xxxxxxxxxx-xxxxxxxx
-```
-
-![LIFF URL สำหรับ Developing](img/5.1.png)
+เปิด **LIFF URL** แบบ **Developing** จากขั้นตอนที่ 1 เพื่อทดสอบ MINI App
 
 <aside class="negative">
-<strong>Important:</strong> URL ของ LINE MINI App ในขั้นตอนนี้ให้ทดสอบบน <strong>แอป LINE บนสมาร์ทโฟน</strong> และ <strong>External Browser บนมือถือ</strong> ก่อน — การรองรับ PC/Desktop จะตั้งค่าเพิ่มในขั้นตอนถัดไป
+<strong>Important:</strong> ทดสอบบน <strong>แอป LINE บนสมาร์ทโฟน</strong> และ <strong>External Browser บนมือถือ</strong> ก่อน — การรองรับ PC/Desktop จะตั้งค่าเพิ่มในขั้นตอนถัดไป
 </aside>
 
-<aside class="positive">
-<strong>Note:</strong> สิ่งที่ตามหลัง <code>https://miniapp.line.me/</code> ทั้งหมดคือสิ่งที่เรียกว่า <strong>LIFF ID</strong> ซึ่งใช้ในการ initialize LIFF SDK เช่น <code>2007775907-73PXWwvy</code> — คัดลอก LIFF ID นี้ไว้ใช้ใน Prompt ขั้นตอนถัดไป
-</aside>
+- เปิด MINI App ผ่าน LIFF URL ได้
+- กด **LINE Login** แล้วเห็น User Profile Card
+- ชื่อจาก LINE ถูกเติมในช่อง Customer Name ได้
+- จองโต๊ะได้ตามปกติ
+
+หลัง Login สำเร็จ จะเห็น **LINE Profile Connected** พร้อมรูปโปรไฟล์ ชื่อผู้ใช้ และปุ่ม **Logout**
+
+![ทดสอบ LINE Login และ User Profile Card](img/5.4.png)
 
 
 ## ส่งและแชร์ข้อความ
@@ -350,7 +354,26 @@ Duration: 0:15:00
 
 อ้างอิง: [Sharing targets with Share Target Picker](https://developers.line.biz/en/docs/liff/sharing-target-picker/)
 
-### Prompt Share Target Picker
+### ขั้นตอนที่ 1: เปิด shareTargetPicker และตั้งค่า Scope
+
+ก่อนส่ง Prompt ต้องเปิดใช้งาน **shareTargetPicker** และเพิ่ม Scope ที่จำเป็นใน LINE Developers Console
+
+1. ไปที่ [LINE Developers Console](https://developers.line.biz/console/)
+2. เลือก Channel **Restaurant Reservation**
+3. เปิดแท็บ **Web app settings**
+4. เปิดสวิตช์ **shareTargetPicker** เป็น **ON**
+
+![เปิด shareTargetPicker](img/6.1.png)
+
+5. ในส่วน **Scopes** กด **Edit** แล้วเพิ่ม **`chat_message.write`** — Scope นี้จำเป็นสำหรับส่งข้อความผ่าน Share Target Picker (ควรมี `openid` และ `profile` อยู่แล้วจากขั้นตอนก่อนหน้า)
+
+![เพิ่ม Scope chat_message.write](img/6.2.png)
+
+<aside class="negative">
+<strong>Important:</strong> เมื่อเปิด scope <code>chat_message.write</code> ฟีเจอร์ browser minimization จะถูกปิดใช้งาน — ผู้ใช้ต้อง <strong>Login แล้ว</strong> ก่อนจึงจะเรียก <code>liff.shareTargetPicker()</code> ได้
+</aside>
+
+### ขั้นตอนที่ 2: ส่ง Prompt Share Target Picker
 
 ```
 Add an "Invite Friends" button below the LINE User Profile Card.
@@ -362,27 +385,30 @@ Hide the button if Share Target Picker is not available.
 Keep the reservation app working normally regardless of availability.
 
 When the button is clicked:
-
-Open LINE Share Target Picker.
-Send a Flex Bubble invitation message.
-Include the restaurant image as the hero image.
-Display the restaurant name "The Green Table".
-Show the message: "มาจองโต๊ะด้วยกันที่ The Green Table"
-Add a prominent CTA button: "จองโต๊ะเลย"
-The CTA button must open the LINE MINI App reservation URL.
-Include the MINI App URL in the Flex message so recipients can open the reservation page directly.
-Generate the Flex Message dynamically using configurable values:
-Restaurant Name
-Restaurant Image URL
-MINI App URL
+- Open LINE Share Target Picker.
+- Send a Flex Bubble invitation message.
+- Include the restaurant image as the hero image.
+- Display the restaurant name "The Green Table".
+- Show the message: "มาจองโต๊ะด้วยกันที่ The Green Table"
+- Add a prominent CTA button: "จองโต๊ะเลย"
+- The CTA button must open the LINE MINI App reservation URL.
+- Include the MINI App URL in the Flex message so recipients can open the reservation page directly.
 
 Keep the existing UI, styling, and reservation functionality unchanged.
 ```
 
-### ทดสอบ Share Target Picker
-- เปิด MINI App ผ่านแอป LINE บนมือถือ หรือ External Browser
-- กดชวนเพื่อนได้ **Invite Friends**
-- กดปุ่มแล้วเลือกเพื่อนหรือกลุ่มได้
+หลัง AI สร้างเสร็จ จะเห็นปุ่ม **Invite Friends** ใต้ LINE User Profile Card
+
+![ปุ่ม Invite Friends](img/6.3.png)
+
+### ขั้นตอนที่ 3: ทดสอบ Share Target Picker
+
+1. เปิด MINI App ผ่านแอป LINE บนมือถือ
+2. กดปุ่ม **Invite Friends**
+3. เลือกเพื่อนหรือกลุ่มที่ต้องการแชร์
+4. ตรวจสอบว่าได้รับ Flex Message คำเชิญจองโต๊ะ
+
+![Flex Message คำเชิญจองโต๊ะ](img/6.5.png)
 
 
 
@@ -424,15 +450,15 @@ Service Messages เป็นฟีเจอร์หนึ่งใน LINE MIN
 
 ให้เลือก Template ที่ต้องการ โดยจะต้องเลือก **Category**, **Language**, และ **Template name** — เมื่อเลือกแล้วเราจะได้ **Template name สำหรับนำไปใช้กับ API** ในขั้นตอนต่อไป
 
-สำหรับ Codelab นี้ แนะนำให้เลือก:
-- **Category**: Store reservation หรือ Booking confirmation
-- **Language**: Thai
-- **Template name**: เลือก Template ที่เหมาะกับการยืนยันการจองโต๊ะ
+สำหรับ Codelab นี้ ให้เลือก Template ดังนี้:
+- **Category**: **Book**
+- **Language**: **Thai**
+- **Template name**: เลือก Template ที่ได้ **Template name for API use** เป็น **`book_request_s_b_th`**
 
 ![Add service message template](img/7.3.png)
 
 <aside class="positive">
-<strong>Tip:</strong> จด **Template name for API use** ไว้ทันที (รูปแบบ <code>{template_name}_th</code>) — จะใช้ใน Prompt และ API ขั้นตอนถัดไป
+<strong>Tip:</strong> จด **Template name for API use** ไว้ทันที — ใน Codelab นี้คือ <code>book_request_s_b_th</code> จะนำไปใส่ใน Prompt ขั้นตอนถัดไป
 </aside>
 
 #### ตั้งชื่อ Use case
@@ -443,7 +469,17 @@ Service Messages เป็นฟีเจอร์หนึ่งใน LINE MIN
 
 #### ทดสอบส่งข้อความด้วยตัวแปร (Template Variables)
 
-ถัดลงมาในหน้าเดียวกัน เราจะพบกับส่วนของ **ตัวแปร (Template Variables)** ที่จะเอาไว้ใช้กับ API โดยที่เราสามารถทดสอบส่งข้อความได้
+ถัดลงมาในหน้าเดียวกัน เราจะพบกับส่วนของ **ตัวแปร (Template Variables)** ที่จะเอาไว้ใช้กับ API โดยที่เราสามารถทดสอบส่งข้อความได้ — ใช้ JSON ตัวอย่างด้านล่างแล้วกด **Send**:
+
+```json
+{
+  "number": "1357",
+  "btn1_url": "https://line.me",
+  "btn2_url": "https://line.me",
+  "btn3_url": "https://line.me",
+  "btn4_url": "https://line.me"
+}
+```
 
 ![Send test message with Template Variables](img/7.4.png)
 
@@ -455,14 +491,18 @@ Service Messages เป็นฟีเจอร์หนึ่งใน LINE MIN
 ## Implement Service Message ใน MINI App
 Duration: 0:45:00
 
-ในช่วงนี้คุณจะใช้ **Prompt ใน Google AI Studio** เพื่อ Implement การส่ง Service Message หลังจองสำเร็จ
+ในช่วงนี้คุณจะใช้ **Prompt ใน Google AI Studio** เพื่อ Implement การส่ง Service Message หลังจองสำเร็จ — ใช้ Template **`book_request_s_b_th`** ที่เพิ่มไว้ในขั้นตอนก่อนหน้า
+
+<aside class="positive">
+<strong>Note:</strong> ใช้ <strong>Template name for API use</strong> และ <strong>Template Variables</strong> ชุดเดียวกับที่ทดสอบในขั้นตอนก่อนหน้า — ใน Codelab นี้คือ <code>book_request_s_b_th</code>
+</aside>
 
 ### Prompt สร้าง Backend สำหรับ Service Message API
 
 ```
 ADD ENV FILE: 
 - CHANNEL_ID = YOUR_CHANNEL_ID
-- YOUR_CHANNEL_SECRET = CHANNEL_SECRET
+- CHANNEL_SECRET = YOUR_CHANNEL_SECRET
 
 Implement a backend server function to send a LINE MINI App Service Message when a reservation is successfully created. We will use the standard template `book_request_s_b_th`.
 
