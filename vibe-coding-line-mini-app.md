@@ -2,7 +2,7 @@
 id: vibe-coding-line-mini-app
 title: Vibe Coding LINE MINI App with AI Studio
 summary: Codelab นี้สอนการสร้างเว็บจองร้านอาหาร แปลงเป็น LINE MINI App และส่ง Service Message ทั้งหมดด้วย Prompt ใน Google AI Studio
-authors: Punsiri Boonyakiat
+authors: Punsiri Boonyakiat, Pamorn Trivorrarat
 categories: LINE MINI App, AI Studio
 tags: LINE MINI App, AI Studio, Vibe Coding, Service Message
 status: Published
@@ -22,7 +22,7 @@ Codelab นี้ออกแบบสำหรับ Workshop แบบ Hands-o
 ### สิ่งที่คุณจะได้ลงมือทำ
 
 - สร้าง **Provider** และ **LINE MINI App Channel** ใน [LINE Developers Console](https://developers.line.biz/console/)
-- สร้างเว็บจองร้านอาหาร (Restaurant Reservation) ด้วย Prompt ใน [Google AI Studio](https://aistudio.google.com/)
+- สร้างเว็บจองร้านอาหาร (Restaurant Reservation) ด้วย Prompt ใน [Google AI Studio](https://ai.studio/build/)
 - แปลงเว็บให้เป็น LINE MINI App ด้วย Prompt ใน Google AI Studio
 - ดึงข้อมูล LINE User Profile มาแสดงบนหน้า MINI App ผ่านการเขียน Prompt
 - แชร์การจองให้เพื่อนหรือกลุ่มด้วย **Share Target Picker** ผ่าน Prompt
@@ -43,7 +43,7 @@ Codelab นี้ออกแบบสำหรับ Workshop แบบ Hands-o
 - **เบราว์เซอร์ Chrome หรือ Edge** บนคอมพิวเตอร์
 
 
-## ทำความรู้จัก Vibe Coding และ AI Studio
+## ทำความรู้จัก Vibe Coding
 Duration: 0:15:00
 
 ### Vibe Coding คืออะไร?
@@ -52,33 +52,19 @@ Duration: 0:15:00
 
 คำว่า *Vibe* หมายถึงการสื่อสาร **"ความรู้สึก" หรือ "เป้าหมาย"** ของแอปที่ต้องการ เช่น "อยากได้เว็บจองร้านอาหารแบบ Premium สีเขียว ใช้งานง่ายบนมือถือ" แทนที่จะระบุ HTML, CSS หรือ JavaScript ทีละไฟล์
 
+![Vibe Coding](img/2.1.png)
+Vibe Coding ช่วยให้ Prototype ได้เร็ว แม้ไม่ใช่ Developer ก็สร้าง MVP หรือ Demo ได้เอง เพียงอธิบายสิ่งที่ต้องการแล้วให้ AI สร้างให้
 
 ### Tools ยอดนิยมสำหรับ Vibe Coding
 
-ปัจจุบันมีเครื่องมือ Vibe Coding หลายตัวที่ได้รับความนิยม แต่ละตัวมีจุดเด่นต่างกัน:
-
-| เครื่องมือ | จุดเด่น | เหมาะกับ |
-|:---|:---|:---|
-| [Google AI Studio](https://aistudio.google.com/) | สร้าง Full-stack App จาก Prompt, Deploy ได้ทันที | Web App, Prototype, Demo |
-| [Cursor](https://cursor.com/) | AI-powered IDE ช่วยเขียนและแก้โค้ดในโปรเจกต์จริง | Developer ที่ต้องการควบคุมโค้ดมากขึ้น |
-| [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | AI Agent ทำงานใน Terminal / IDE | Automation, Refactoring, CLI workflow |
-| [Windsurf](https://windsurf.com/) | AI IDE เน้น Flow การพัฒนาแบบ Agentic | Full-stack development |
-| [Bolt.new](https://bolt.new/) | สร้าง Web App ใน Browser จาก Prompt | Prototype เร็ว, Full-stack demo |
+ปัจจุบันมีเครื่องมือ Vibe Coding หลายตัวที่ได้รับความนิยม เช่น [Google AI Studio](https://ai.studio/build/) สำหรับสร้าง Full-stack App จาก Prompt และ Deploy ได้ทันที, [Cursor](https://cursor.com/) เป็น AI-powered IDE ช่วยเขียนและแก้โค้ดในโปรเจกต์จริง, [Claude Code](https://docs.anthropic.com/en/docs/claude-code) ทำงานเป็น AI Agent ใน Terminal 
 
 <aside class="positive">
 <strong>Note:</strong> ใน Workshop นี้เราใช้ <strong>Google AI Studio</strong> สร้างเว็บจองร้านอาหาร และแปลงเป็น LINE MINI App — แต่หลักการ Vibe Coding ใช้ได้กับเครื่องมืออื่นๆ ด้านบนเช่นกัน
 </aside>
 
-### ข้อดีของ Vibe Coding
 
-| ข้อดี | รายละเอียด |
-|:---|:---|
-| **Prototype ได้เร็วมาก** | จากที่เคยใช้หลายวัน เหลือไม่กี่ชั่วโมง |
-| **คนที่ไม่ใช่ Developer ก็สร้าง App ได้** | Product Owner, Designer หรือ Entrepreneur ลองสร้าง MVP เองได้ |
-| **เหมาะกับ MVP, Hackathon, Demo** | ทดสอบไอเดียและ pitch ได้เร็วก่อนลงมือพัฒนาจริงจัง |
-| **สร้าง UI ได้เร็วมาก** | อธิบาย Style, Layout, Flow แล้วให้ AI generate ให้ทันที |
-
-## สร้างเว็บจองร้านอาหาร
+## สร้างเว็บจองร้านอาหาร ด้วย Google AI Studio
 
 Duration: 0:45:00
 
@@ -86,13 +72,18 @@ Duration: 0:45:00
 
 ### ขั้นตอนที่ 1: เปิด Google AI Studio
 
-1. ไปที่ [Google AI Studio](https://aistudio.google.com/)
+1. ไปที่ [Google AI Studio](https://ai.studio/build/)
 2. เข้าสู่ระบบด้วยบัญชี Google
-3. คลิก **Build** เพื่อเริ่มโปรเจกต์ใหม่
 
-### ขั้นตอนที่ 2: Prompt สร้างเว็บจองร้านอาหาร (Copy & Paste)
+![เข้าสู่ระบบด้วยบัญชี Google](img/3.1.png)
+![เข้าสู่ระบบด้วยบัญชี Google](img/3.1.2.png)
 
-วาง Prompt ด้านล่างนี้ใน Google AI Studio แล้วกด **Generate**:
+
+### ขั้นตอนที่ 2: Prompt สร้างเว็บจองร้านอาหาร
+
+วาง Prompt ด้านล่างนี้ใน Google AI Studio แล้วกด **Build**:
+
+![วาง Prompt และกด Build](img/3.2.png)
 
 ```
 Generate a complete, mobile-first restaurant reservation application. Deliver both the React frontend (Vite) and the Express backend code.
@@ -113,7 +104,6 @@ Generate a complete, mobile-first restaurant reservation application. Deliver bo
    (Selected button switches to Green background with white text).
 5. Contact Info Form: Full Name (Required), Mobile Number (Required, tel type), Special Request (Optional, textarea).
 6. Action Button: "Reserve Now" (Disabled until form is completely filled. Triggers loading state on click).
-
 ---
 
 ### API & Server-Side Data Layer
@@ -141,7 +131,6 @@ Generate a complete, mobile-first restaurant reservation application. Deliver bo
 #### 3. Client-Side API Handling
 - Create an API service layer on the frontend using Fetch or Axios to submit data to `POST /api/reservations`.
 - Handle response states: On success, display a premium "Reservation Confirmed!" modal; handle error boundaries gracefully.
-
 ---
 
 ### Expected Output Structure
@@ -151,33 +140,57 @@ Please output the code clearly separated into:
 - `src/App.jsx` (React core container, UI components, state management, and the confirmation modal)
 ```
 
+เมื่อ AI สร้าง Design ให้เลือก แล้วกด **Select this design**
+
+![เลือก Design](img/3.3.png)
+
 <aside class="positive">
 <strong>Tip:</strong> ถ้า UI ยังไม่ตรงใจ ให้ใช้ **Annotation Mode** วาดวงรอบส่วนที่ต้องการแก้ แล้ว Prompt เพิ่ม เช่น "เปลี่ยนชื่อร้านเป็น The Green Table" หรือ "เพิ่มโลโก้ร้านด้านบน"
 </aside>
 
-### ขั้นตอนที่ 3: Prompt เพื่อปรับปรุงเว็ป
+### ขั้นตอนที่ 3: Prompt เพื่อปรับปรุงเว็บ (Optional)
+หากต้องการปรับแต่งเว็บให้สมบูรณ์ขึ้นหลังได้ Design แรกแล้ว เช่น ใส่ชื่อร้าน แสดงเมนูอาหาร หรือปรับ UI ให้ตรงกับแบรนด์มากขึ้น วาง Prompt ด้านล่างใน Google AI Studio แล้วกด **Send Prompt** อีกครั้ง
 
 ```
-Add the restaurant name "The Green Table" and a tagline at the top of the page.
-Display a sample menu in a carousel format.
-Use high-quality food images and show the dish name, short description, and price for each menu item.
-Keep the design clean, modern, and mobile-friendly.
+Add a beautiful hero image to the page header.
+Add the restaurant name "The Green Table" and a tagline below the hero image.
+Display a sample menu in a carousel format with high-quality food images.
+Show the dish name, short description, and price for each menu item.
+Keep the existing reservation flow and Premium Green design unchanged.
 ```
 
-### ขั้นตอนที่ 4: Deploy เว็บ (optional)
+![วาง Prompt ปรับปรุงเว็บ](img/3.4.png)
 
-เมื่อ Preview ใช้งานได้แล้ว ให้ Deploy เพื่อได้ URL สาธารณะ:
+หลัง AI สร้างเสร็จ คุณจะได้เว็บที่มี hero image ชื่อร้าน และเมนู carousel ตามที่ระบุใน Prompt
 
-1. คลิก **Deploy** ใน Google AI Studio
-2. เลือก Deploy ไปยัง **Google Cloud Run** (หรือตัวเลือกที่ AI Studio แนะนำ)
-3. รอจน Deploy สำเร็จ แล้ว **คัดลอก URL** ไว้ใช้ในขั้นตอนถัดไป
+![ผลลัพธ์หลังปรับปรุงเว็บ](img/3.5.png)
 
+### ขั้นตอนที่ 4: คัดลอก App URL
+
+ก่อนแปลงเป็น LINE MINI App คุณต้องมี **App URL** ของเว็บที่ Deploy แล้วจาก Google AI Studio — นำไปใช้เป็น **Endpoint URL** ใน LINE Developers Console ในขั้นตอนถัดไป
+
+1. กด **Publish** เพื่อ Deploy แอป
+2. เปิด **Settings** (ไอคอนเฟือง) → แท็บ **Integrations**
+3. เลือก **Enable OAuth manually** (Self-serve authentication)
+4. คัดลอก **App URL** ไว้ใช้ในขั้นตอนถัดไป
+
+![Settings → Integrations → Enable OAuth manually](img/3.6.png)
+
+![คัดลอก App URL](img/3.7.png)
+
+<aside class="positive">
+<strong>Tip:</strong> เก็บ <strong>App URL</strong> ไว้ใช้ตอนตั้งค่า <strong>Endpoint URL</strong> ในแท็บ <strong>Web app settings</strong> ของ LINE MINI App Channel
+</aside>
 
 ### ทดสอบเว็บก่อนไปต่อ
-- [ ] เลือกจำนวนแขก (+ / −) ได้
-- [ ] เลือกวันที่และช่วงเวลา (Lunch / Dinner) ได้
-- [ ] กรอกชื่อ เบอร์โทร และ Special Request ได้
-- [ ] กด Reserve Now แล้วเห็น Summary / Confirmation
+
+เปิด **App URL** ในเบราว์เซอร์เพื่อทดสอบเว็บที่ Deploy แล้ว
+
+![ทดสอบเว็บผ่าน App URL](img/3.8.png)
+
+- เลือกจำนวนแขก (+ / −) ได้
+- เลือกวันที่และช่วงเวลา (Lunch / Dinner) ได้
+- กรอกชื่อ เบอร์โทร และ Special Request ได้
 
 
 
@@ -192,8 +205,13 @@ Duration: 0:20:00
 จุดเริ่มต้นสำหรับการพัฒนาแอปพลิเคชันต่างๆ บนแพลตฟอร์มของ LINE คือคุณจะต้องสมัครเป็น **LINE Developer** ก่อน
 
 1. เข้าไปที่ [https://developers.line.biz/console/](https://developers.line.biz/console/) แล้วเลือก **Log in with LINE account** (สีเขียว) เพื่อเข้าสู่ระบบ
+
+![Log in with LINE account](img/4.1.png)
+
 2. เข้าสู่ระบบด้วยบัญชี LINE ของคุณให้เรียบร้อย
 3. กรอกชื่อและอีเมล พร้อมกดยอมรับ Agreement จากนั้นกดปุ่ม **Create my account** — เสร็จสิ้นขั้นตอนการสมัครเป็น LINE Developer
+
+![Create my account](img/4.2.png)
 
 ### สร้าง Provider
 
@@ -201,6 +219,8 @@ Duration: 0:20:00
 
 1. ในหน้า Console คลิก **Create a new provider**
 2. ระบุชื่อ Provider แล้วกด **Create**
+
+![Create a new provider](img/4.3.png)
 
 <aside class="negative">
 <strong>Important:</strong> 1 Account สามารถมี Provider สูงสุดได้ 10 Providers และ<strong>ไม่สามารถมีคำว่า LINE ในชื่อ Provider</strong> ได้
@@ -214,7 +234,13 @@ Duration: 0:20:00
 
 1. เลือก Provider ที่สร้างไว้ → คลิก **Create a new channel**
 2. เลือก **LINE MINI App**
+
+![Choose LINE MINI App channel type](img/4.4.png)
+
 3. กรอกรายละเอียด Channel:
+
+![Create LINE MINI App channel form](img/4.5.png)
+
    - **Channel name**: `Restaurant Reservation`
    - **Channel description**: `บริการจองโต๊ะร้านอาหาร The Green Table`
    - **Category**: เลือกหมวดที่เหมาะสม (เช่น Food & Drink)
@@ -224,7 +250,9 @@ Duration: 0:20:00
 <strong>Note:</strong> ส่วนของ Channel icon และ Terms of Use สามารถระบุภายหลังได้
 </aside>
 
-บันทึก **Channel ID** และ **LIFF ID** จากแท็บ **Web app settings** ไว้ใช้ในขั้นตอนถัดไป
+<aside class="positive">
+<strong>Tip:</strong> บันทึก <strong>Channel ID</strong> และ <strong>LIFF ID</strong> จากแท็บ <strong>Web app settings</strong> ไว้ใช้ในขั้นตอนถัดไป
+</aside>
 
 
 ## แปลงเว็บเป็น LINE MINI App
@@ -244,28 +272,37 @@ Duration: 0:45:00
 หลัง AI สร้างแอปแล้ว ให้ Prompt สร้าง **User Profile Card** ที่ดึงข้อมูลจาก LINE (แทนที่ `YOUR_LIFF_ID` ด้วย LIFF ID จาก Console):
 
 ```
-Convert my existing restaurant reservation website into a LINE MINI App.
-
-Do not redesign or rebuild the website from scratch. Preserve the existing UI, pages, user flow, styling, and business logic as much as possible.
-
-Add LINE Login and LIFF integration using:
-
+ADD ENV FILE: 
 LIFF ID: YOUR_LIFF_ID
 
-Requirements:
+Convert my existing restaurant reservation website into a LINE MINI App.
+Do not redesign or rebuild the website from scratch. Preserve the existing UI, pages, components, styling, reservation flow, and business logic as much as possible. The goal is to add LINE MINI App capabilities while keeping the current website experience unchanged.
 
-Add a LINE User Profile Card at the top of the reservation page.
-Display the user's LINE profile picture and display name.
-Automatically populate the customer name field with the user's LINE display name.
-Keep the customer name field editable.
-Support automatic LINE Login when users open the MINI App from an external browser (Chrome, Safari, desktop browser, etc.).
-Detect whether the app is running inside the LINE application or in an external browser.
-Retrieve LINE environment information for app behavior and debugging purposes.
-If the LINE profile cannot be loaded, the reservation form must continue working normally without blocking the reservation process.
-Keep all existing reservation functionality unchanged.
-Maintain the current UI and user experience while adding LINE MINI App capabilities.
+Requirements:
+- Integrate LIFF and LINE Login into the existing application.
+- Add a LINE User Profile Card at the top of the reservation page.
+- Display the user's LINE profile picture and display name after successful login.
+- Automatically populate the Customer Name field with the LINE display name.
+- Keep the Customer Name field editable by the user.
+- Do not force automatic login when the page loads.
+- Show a LINE Login button when the user is not logged in.
+- When the Login button is clicked:
+- If liff.isLoggedIn() is false, call liff.login().
+- If already logged in, load the user's profile using liff.getProfile().
+- Show a Logout button when the user is logged in.
+- When Logout is clicked: Call liff.logout()
+
+
+LIFF Setup:
+- Initialize LIFF using withLoginOnExternalBrowser: true.
+- Support both LINE in-app browser and external browsers (Chrome, Safari, desktop browsers).
+- Use liff.isInClient() to detect whether the app is running inside LINE.
+- Use liff.getContext() to retrieve environment information for debugging and application behavior.
 ```
 
+แทนที่ `YOUR_LIFF_ID` ด้วย LIFF ID จาก Console แล้วกดส่ง Prompt
+
+![วาง Prompt แปลงเป็น LINE MINI App](img/5.3.png)
 
 ### ขั้นตอนที่ 2: ตั้งค่า LINE MINI App
 
@@ -282,16 +319,20 @@ Maintain the current UI and user experience while adding LINE MINI App capabilit
 ใน Codelab นี้ ให้คุณระบุ **Endpoint URL ของเว็บที่ Deploy แล้วจาก Google AI Studio** ลงในช่อง **Developing**:
 
 1. แท็บ **Web app settings** → หา **Endpoint URL**
-2. วาง URL ของเว็บจองร้านอาหารที่ Deploy แล้ว (ต้องขึ้นต้นด้วย `https://`)
+2. วาง **App URL** จาก Google AI Studio (ขั้นตอนที่ 4) ลงในช่อง **Developing** (ต้องขึ้นต้นด้วย `https://`)
 3. คลิก **Update** เพื่อบันทึก
 
-#### LIFF URL สำหรับเปิด MINI App
+![ตั้งค่า Endpoint URL](img/5.2.png)
+
+#### LIFF URL สำหรับเปิด LINE MINI App
 
 URL ของ LINE MINI App ที่เราจะนำไปใช้ทดสอบจะอยู่ที่ **LIFF URL** แบบ **Developing** ในหน้า **Web app settings** เช่น:
 
 ```
 https://miniapp.line.me/xxxxxxxxxx-xxxxxxxx
 ```
+
+![LIFF URL สำหรับ Developing](img/5.1.png)
 
 <aside class="negative">
 <strong>Important:</strong> URL ของ LINE MINI App ในขั้นตอนนี้ให้ทดสอบบน <strong>แอป LINE บนสมาร์ทโฟน</strong> และ <strong>External Browser บนมือถือ</strong> ก่อน — การรองรับ PC/Desktop จะตั้งค่าเพิ่มในขั้นตอนถัดไป
@@ -314,19 +355,32 @@ Duration: 0:15:00
 ```
 Add an "Invite Friends" button below the LINE User Profile Card.
 
-Show this button only when:
-liff.isApiAvailable("shareTargetPicker") === true
+Requirements:
 
-When clicked, open LINE Share Target Picker and send a short Thai invitation Flex/Bubble message.
+Show the button only when liff.isApiAvailable("shareTargetPicker") returns true.
+Hide the button if Share Target Picker is not available.
+Keep the reservation app working normally regardless of availability.
 
-Message text:
-"มาจองโต๊ะด้วยกันที่ The Green Table"
+When the button is clicked:
 
-If shareTargetPicker is not available, hide the button and keep the reservation app working normally.
+Open LINE Share Target Picker.
+Send a Flex Bubble invitation message.
+Include the restaurant image as the hero image.
+Display the restaurant name "The Green Table".
+Show the message: "มาจองโต๊ะด้วยกันที่ The Green Table"
+Add a prominent CTA button: "จองโต๊ะเลย"
+The CTA button must open the LINE MINI App reservation URL.
+Include the MINI App URL in the Flex message so recipients can open the reservation page directly.
+Generate the Flex Message dynamically using configurable values:
+Restaurant Name
+Restaurant Image URL
+MINI App URL
+
+Keep the existing UI, styling, and reservation functionality unchanged.
 ```
 
 ### ทดสอบ Share Target Picker
-- เปิด MINI App ผ่านแอป LINE บนมือถือ
+- เปิด MINI App ผ่านแอป LINE บนมือถือ หรือ External Browser
 - กดชวนเพื่อนได้ **Invite Friends**
 - กดปุ่มแล้วเลือกเพื่อนหรือกลุ่มได้
 
@@ -337,16 +391,25 @@ Duration: 0:30:00
 
 ### Service Message คืออะไร?
 
-**Service Message** เป็นฟีเจอร์ของ LINE MINI App ที่ช่วยส่ง **การแจ้งเตือนที่เกี่ยวข้องกับการกระทำของผู้ใช้** ไปยังแชท **LINE MINI App Notice** (ประเทศไทย)
+Service Messages เป็นฟีเจอร์หนึ่งใน LINE MINI App ที่ให้ผู้ให้บริการส่งข้อความแจ้งเตือนไปยังผู้ใช้งานที่มีปฏิพันสัมพันธ์บน LINE MINI App ได้โดยไม่มีค่าบริการ และไม่จำเป็นต้อง Add ตัว LINE OA ใดๆ เช่น เมื่อลูกค้าเข้ามาจองโต๊ะอาหาร ทางร้านก็สามารถส่งข้อความยืนยันการจอง หรือส่งข้อความแจ้งเตือนล่วงหน้าก่อนถึงวันที่จะเข้ามาใช้บริการ
 
 ตัวอย่าง Use Case สำหรับ Restaurant Reservation:
 - ยืนยันการจองโต๊ะสำเร็จ
 - แจ้งเตือนก่อนถึงเวลารับประทาน 1 วัน
 - แจ้งยกเลิกการจอง
 
+![Service Messages in LINE MINI App Notice](img/7.1.png)
 
+<aside class="positive">
+<strong>Note:</strong> การเปิดใช้ LINE MINI App ของผู้ใช้งาน 1 ครั้ง ผู้ให้บริการจะมีสิทธิ์ในการส่งข้อความ Service Messages ให้ผู้ใช้งานคนดังกล่าวได้สูงสุด 5 ข้อความ
+</aside>
+
+<aside class="negative">
+<strong>Important:</strong> LINE MINI App ไม่อนุญาตให้ส่งข้อความโฆษณาหรือโปรโมชันต่างๆได้ <a href="https://developers.line.biz/en/docs/line-mini-app/service/service-operation/#conditions-for-service-messages">รายละเอียดเพิ่มเติม</a>
+</aside>
 
 ### ขั้นตอนที่ 1: เพิ่ม Template ของ Service Messages
+
 
 ขั้นตอนต่อไปเราจะมาสร้าง Template ของข้อความกัน โดยใน Channel ให้เราเลือกแท็บ **Service message template** แล้วกดปุ่ม **Add** สีเขียวทางด้านขวาล่าง
 
@@ -354,6 +417,8 @@ Duration: 0:30:00
 2. เลือก Channel **Restaurant Reservation** (Developing)
 3. เปิดแท็บ **Service message template**
 4. คลิกปุ่ม **Add** (สีเขียว มุมขวาล่าง)
+
+![Service message template tab](img/7.2.jpeg)
 
 #### เพิ่ม Template ที่ต้องการ
 
@@ -364,14 +429,23 @@ Duration: 0:30:00
 - **Language**: Thai
 - **Template name**: เลือก Template ที่เหมาะกับการยืนยันการจองโต๊ะ
 
+![Add service message template](img/7.3.png)
+
 <aside class="positive">
 <strong>Tip:</strong> จด **Template name for API use** ไว้ทันที (รูปแบบ <code>{template_name}_th</code>) — จะใช้ใน Prompt และ API ขั้นตอนถัดไป
 </aside>
+
+#### ตั้งชื่อ Use case
+
+ระบุชื่อ **Use case** ให้สื่อถึงจุดประสงค์ของ Template (เช่น `Book Confirmed`) แล้วกด **Add**
+
+![ตั้งชื่อ Use case](img/7.5.png)
 
 #### ทดสอบส่งข้อความด้วยตัวแปร (Template Variables)
 
 ถัดลงมาในหน้าเดียวกัน เราจะพบกับส่วนของ **ตัวแปร (Template Variables)** ที่จะเอาไว้ใช้กับ API โดยที่เราสามารถทดสอบส่งข้อความได้
 
+![Send test message with Template Variables](img/7.4.png)
 
 <aside class="negative">
 <strong>Important:</strong> การส่งข้อความด้วย Service Messages จะสามารถเลือกประเภทของข้อความได้<strong>ตาม Template ที่ทาง LINE เตรียมไว้ให้เท่านั้น</strong>
@@ -386,7 +460,7 @@ Duration: 0:45:00
 ### Prompt สร้าง Backend สำหรับ Service Message API
 
 ```
-ENV: 
+ADD ENV FILE: 
 - CHANNEL_ID = YOUR_CHANNEL_ID
 - YOUR_CHANNEL_SECRET = CHANNEL_SECRET
 
@@ -444,8 +518,9 @@ Please provide the complete, updated code blocks for:
 
 
 
-### Checklist ทดสอบ Service Message
-- จองโต๊ะใน MINI App แล้วได้รับ Service Message
+### ทดสอบ Service Message
+- จองโต๊ะใน MINI App 
+- ได้รับ Service Message ผ่าน LINE MINI App Notice
 
 
 
