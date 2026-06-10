@@ -408,7 +408,7 @@ Keep the existing UI, styling, and reservation functionality unchanged.
 3. เลือกเพื่อนหรือกลุ่มที่ต้องการแชร์
 4. ตรวจสอบว่าได้รับ Flex Message คำเชิญจองโต๊ะ
 
-![Flex Message คำเชิญจองโต๊ะ](img/6.5.png)
+![Flex Message คำเชิญจองโต๊ะ](img/6.4png)
 
 
 
@@ -561,7 +561,6 @@ Please provide the complete, updated code blocks for:
 ### ทดสอบ Service Message
 - จองโต๊ะใน MINI App 
 - ได้รับ Service Message ผ่าน LINE MINI App Notice
-
 
 
 
